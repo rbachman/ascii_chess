@@ -1,4 +1,4 @@
-from chesslib import MatchManager
+from ascii_chess.chesslib import MatchManager
 from sys import exit
 
 def main():

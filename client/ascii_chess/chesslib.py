@@ -1,7 +1,7 @@
 from chess import Board, Move
 from chess import STARTING_FEN
-from models import CONFIG_SCHEMA, MATCH_SCHEMA
-from banners import WELCOME_BANNER, WINNER_BANNER
+from ascii_chess.models import CONFIG_SCHEMA, MATCH_SCHEMA
+from ascii_chess.banners import WELCOME_BANNER, WINNER_BANNER
 from os import system
 from time import sleep
 import requests
