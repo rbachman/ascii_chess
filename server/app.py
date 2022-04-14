@@ -3,11 +3,11 @@ import os
 
 import aws_cdk as cdk
 
-from quokka_chess.quokka_chess_stack import QuokkaChessStack
+from ascii_chess.ascii_chess_stack import AsciiChessStack
 
 
 app = cdk.App()
-QuokkaChessStack(app, "QuokkaChessStack",
+AsciiChessStack(app, "AsciiChessStack",
     # If you don't specify 'env', this stack will be environment-agnostic.
     # Account/Region-dependent features and context lookups will not work,
     # but a single synthesized template can be deployed anywhere.
