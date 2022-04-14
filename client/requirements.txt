@@ -3,3 +3,4 @@ chess==1.9.0
 setuptools
 wheel
 build
+twine
