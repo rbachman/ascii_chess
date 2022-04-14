@@ -1,0 +1,55 @@
+from aws_cdk import (
+    Duration,
+    Stack,
+    aws_lambda_python_alpha as awsPLambda,
+    aws_apigateway as apigw,
+    aws_lambda as awsLambda,
+    aws_codecommit as codecommit, 
+    aws_codeartifact as codeartifact,
+    aws_codepipeline as codepipeline,
+    aws_codepipeline_actions as actions,
+    aws_codebuild as codebuild
+)
+
+from constructs import Construct
+
+
+class AsciiChessStack(Stack):
+
+    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
+        super().__init__(scope, construct_id, **kwargs)
+        
+        source_repo = codecommit.Repository(self, "sourceRepo", repository_name="workshopSource")
+    
+        code_domain = codeartifact.CfnDomain(self, "MyCfnDomain", domain_name="workshopdomain")
+        code_repo = codeartifact.CfnRepository(self, "MyCfnRepository", domain_name="workshopdomain", repository_name="workshoprepo")
+        code_repo.add_depends_on(code_domain)
+        
+        pipeline = codepipeline.Pipeline(self, "Pipeline")
+        source_stage = pipeline.add_stage(stage_name="Source")
+    
+        source_output = codepipeline.Artifact("SourceArtifact")
+        source_action = actions.CodeCommitSourceAction(
+                            action_name="Source",
+                            repository=source_repo,
+                            branch="main",
+                            output=source_output)
+        source_stage.add_action(source_action)
+        build_project = codebuild.PipelineProject(self, "InvalidateProject",
+            build_spec=codebuild.BuildSpec.from_object({
+                "version": "0.2",
+                 "phases": {
+                    "build": {
+                     "commands": ["ls"]
+                    }
+                }
+            }))
+        build_action = actions.CodeBuildAction(
+                            action_name="Build",
+                            project=build_project,
+                            input=source_output)
+        build_stage = pipeline.add_stage(stage_name="Build")
+        build_stage.add_action(build_action)
+
+
+
