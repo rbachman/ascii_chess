@@ -35,7 +35,7 @@ class AsciiChessStack(Stack):
                             branch="main",
                             output=source_output)
         source_stage.add_action(source_action)
-        build_project = codebuild.PipelineProject(self, "InvalidateProject",
+        build_project = codebuild.PipelineProject(self, "BuildProject",
             build_spec=codebuild.BuildSpec.from_object({
                 "version": "0.2",
                  "phases": {
