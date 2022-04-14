@@ -1,0 +1,2 @@
+CONFIG_SCHEMA='''CREATE TABLE config (clientId varchar(64), url varchar(64), CONSTRAINT pkey PRIMARY KEY (clientId))'''
+MATCH_SCHEMA='''CREATE TABLE match (matchId VARCHAR(64), fen VARCHAR(64), player INT, level INT, result VARCHAR(10), CONSTRAINT pkey PRIMARY KEY (matchId))'''
