@@ -3,7 +3,7 @@ import os
 
 import aws_cdk as cdk
 
-from ascii_chess.ascii_chess_stack import AsciiChessStack
+from ascii_chess_cdk.ascii_chess_stack import AsciiChessStack
 
 
 app = cdk.App()
