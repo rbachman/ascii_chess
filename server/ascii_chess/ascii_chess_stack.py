@@ -17,7 +17,7 @@ class AsciiChessStack(Stack):
         backend = awsPLambda.PythonFunction(self, "chessFunction",
             entry="lambda",
             runtime=awsLambda.Runtime.PYTHON_3_8,
-            handler="index.handler",
+            handler="handler",
             timeout=Duration.seconds(60),
         )
         api = apigw.LambdaRestApi(self, "chessapi",
