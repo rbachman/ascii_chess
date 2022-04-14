@@ -5,7 +5,10 @@ from aws_cdk import (
     aws_apigateway as apigw,
     aws_lambda as awsLambda,
     aws_codecommit as codecommit, 
-    aws_codeartifact as codeartifact
+    aws_codeartifact as codeartifact,
+    aws_codepipeline as codepipeline,
+    aws_codepipeline_actions as actions,
+    aws_codebuild as codebuild
 )
 
 from constructs import Construct

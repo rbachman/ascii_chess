@@ -1,6 +1,6 @@
 **.pyc
 **__pycache__
-**/cdk.out
-**/cdk.out/**
+cdk.out/
+cdk.out/**
 **.DS_Store
 
